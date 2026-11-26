@@ -1,8 +1,8 @@
 import type { ThemeScheme } from "../contracts.js";
 import { colors, familyTypography, scheme, theme } from "./shared.js";
 
-const accentHue = 45;
-const neutralHue = 80;
+const accentHue = 258;
+const neutralHue = 255;
 
 function calmScheme(appearance: ThemeScheme) {
   const dark = appearance === "dark";
@@ -113,7 +113,7 @@ function calmScheme(appearance: ThemeScheme) {
 export const calmTheme = theme(
   "calm",
   "Calm",
-  "Near-white paper, soft dividers, and one warm accent for what matters.",
+  "Near-white paper, soft dividers, and one blue accent for what matters.",
   "lucide",
   { light: calmScheme("light"), dark: calmScheme("dark") },
 );
