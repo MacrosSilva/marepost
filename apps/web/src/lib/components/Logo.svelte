@@ -57,7 +57,7 @@
 	{:else}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 128 128"
+			viewBox="0 0 256 256"
 			width={size}
 			height={size}
 			role={decorative || showText ? undefined : 'img'}
@@ -65,12 +65,8 @@
 			aria-hidden={decorative || showText ? 'true' : undefined}
 			class="h-auto max-w-full shrink-0"
 		>
-			<g fill="var(--action-focal)">
-				<path d="M24 4h36v28L32 60H4V24A20 20 0 0 1 24 4Z" />
-				<path d="M68 4h36a20 20 0 0 1 20 20v36H96L68 32Z" />
-				<path d="M4 68h28l28 28v28H24a20 20 0 0 1-20-20Z" />
-				<path d="m68 96 28-28h28v36a20 20 0 0 1-20 20H68Z" />
-			</g>
+			<path fill="var(--action-focal)" d="M68 40h120a28 28 0 0 1 28 28v104q-18.5-14-37 0t-37 0t-37 0t-37 0v-104a28 28 0 0 1 28-28z" />
+			<path d="M58 214q17.5-13 35 0t35 0t35 0t35 0" fill="none" stroke="#6ea0ff" stroke-width="16" stroke-linecap="round" />
 		</svg>
 	{/if}
 	{#if showText && !showingWordmark}

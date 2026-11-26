@@ -42,7 +42,7 @@ const storedSettingsSchema = z.object({
 	theme: z.enum(INTERFACE_SOUND_THEMES)
 });
 
-// Each OpenPost sound theme is one cuelume material; tokens name interface jobs.
+// Each MaréPost sound theme is one cuelume material; tokens name interface jobs.
 const THEME_MATERIALS = {
 	signature: 'default',
 	velvet: 'press',

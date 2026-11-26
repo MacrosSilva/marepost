@@ -1,4 +1,4 @@
-/** Ported from FreeCut (MIT), adapted to OpenPost's Svelte scope surface. */
+/** Ported from FreeCut (MIT), adapted to MaréPost's Svelte scope surface. */
 /**
  * GPU-accelerated histogram scope.
  * Compute shader bins pixel values into 256-bin histogram, render shader visualizes

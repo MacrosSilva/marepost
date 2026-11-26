@@ -30,10 +30,10 @@ FROM docker.io/library/alpine:3.24.4@sha256:f59abe656b692d901e184be3445e08478660
 
 ARG VERSION=dev
 ARG COMMIT=unknown
-LABEL org.opencontainers.image.title="OpenPost" \
+LABEL org.opencontainers.image.title="MaréPost" \
       org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.revision="${COMMIT}" \
-      org.opencontainers.image.source="https://github.com/getopenpost/openpost" \
+      org.opencontainers.image.source="https://github.com/MacrosSilva/marepost" \
       org.opencontainers.image.base.name="docker.io/library/alpine:3.24.4" \
       org.opencontainers.image.base.digest="sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf"
 
@@ -57,6 +57,9 @@ ENV OPENPOST_DATABASE_PATH=/data/db/openpost.db
 ENV OPENPOST_STORAGE_DRIVER=local
 ENV OPENPOST_MEDIA_PATH=/data/media
 ENV OPENPOST_DIAGNOSTICS_STATE_FILE=/data/diagnostics-installation-id
+# MaréPost: sem envio de diagnósticos aos mantenedores do projeto original.
+ENV OPENPOST_DIAGNOSTICS_ENABLED=false
+ENV OPENPOST_TELEMETRY_ENABLED=false
 
 EXPOSE 8080
 

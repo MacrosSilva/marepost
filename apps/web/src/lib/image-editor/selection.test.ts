@@ -18,7 +18,7 @@ import {
 	translatePixelMaskRegion
 } from './selection';
 
-describe('OpenPost Image Editor area selection geometry', () => {
+describe('MaréPost Image Editor area selection geometry', () => {
 	it('finds points and layer bounds crossed by a lasso', () => {
 		const polygon = [
 			{ x: 0, y: 0 },
@@ -32,7 +32,7 @@ describe('OpenPost Image Editor area selection geometry', () => {
 	});
 });
 
-describe('OpenPost Image Editor selection composition', () => {
+describe('MaréPost Image Editor selection composition', () => {
 	it('supports replace, add, subtract, intersect, and toggle without duplicate IDs', () => {
 		expect(mergeSelectionIDs(['a'], ['b', 'b'], 'replace')).toEqual(['b']);
 		expect(mergeSelectionIDs(['a'], ['a', 'b'], 'add')).toEqual(['a', 'b']);

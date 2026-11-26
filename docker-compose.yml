@@ -1,7 +1,7 @@
 services:
-  openpost:
-    image: ghcr.io/getopenpost/openpost:latest
-    container_name: openpost
+  marepost:
+    image: ghcr.io/macrossilva/marepost:latest
+    container_name: marepost
     restart: unless-stopped
     stop_grace_period: 15s
 
@@ -35,6 +35,8 @@ services:
       - OPENPOST_PORT=8080
       - OPENPOST_DATABASE_PATH=/data/db/openpost.db
       - OPENPOST_MEDIA_PATH=/data/media
+      - OPENPOST_DIAGNOSTICS_ENABLED=false
+      - OPENPOST_TELEMETRY_ENABLED=false
 
 volumes:
   openpost_data:

@@ -1,4 +1,4 @@
-/** Ported from FreeCut's MIT-licensed transition preview, using OpenPost's Canvas renderers. */
+/** Ported from FreeCut's MIT-licensed transition preview, using MaréPost's Canvas renderers. */
 
 import { transitionRegistry } from '../index';
 import { defaultTransitionProperties } from '../default-properties';

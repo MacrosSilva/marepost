@@ -19,7 +19,7 @@ const pendingSelection = {
 	options: [
 		{
 			id: 'page_1',
-			display_name: 'OpenPost Page',
+			display_name: 'MaréPost Page',
 			username: 'openpost',
 			kind: 'page',
 			description: 'Main brand page',
@@ -88,7 +88,7 @@ describe('account OAuth callback selection flow', () => {
 				})
 			)
 			.toBeVisible();
-		await expect.element(screen.getByText('OpenPost Page')).toBeVisible();
+		await expect.element(screen.getByText('MaréPost Page')).toBeVisible();
 		expect(screen.container.textContent).toMatch(/Facebook\s*·\s*openpost\s*·\s*page/);
 		await expect.element(screen.getByText('followers: 1,240')).toBeVisible();
 		await expect
@@ -99,7 +99,7 @@ describe('account OAuth callback selection flow', () => {
 		expect(mocks.get).toHaveBeenCalledWith('/accounts/selections/{connection_id}', {
 			params: { path: { connection_id: 'conn_123' } }
 		});
-		await screen.getByRole('radio', { name: /OpenPost Page/ }).click();
+		await screen.getByRole('radio', { name: /MaréPost Page/ }).click();
 		await screen.getByRole('button', { name: 'Connect selected account' }).click();
 
 		expect(mocks.post).toHaveBeenCalledWith('/accounts/selections/{connection_id}/complete', {
@@ -140,7 +140,7 @@ describe('account OAuth callback selection flow', () => {
 		setCallbackUrl('status=selection_required&platform=facebook&connection_id=conn_123');
 
 		const screen = await renderCallbackPage();
-		await screen.getByRole('radio', { name: /OpenPost Page/ }).click();
+		await screen.getByRole('radio', { name: /MaréPost Page/ }).click();
 		await screen.getByRole('button', { name: 'Connect selected account' }).click();
 
 		await vi.waitFor(() => expect(mocks.goto).toHaveBeenCalledWith('/settings?tab=accounts'));
@@ -153,7 +153,7 @@ describe('account OAuth callback selection flow', () => {
 
 		const screen = await renderCallbackPage();
 
-		await screen.getByRole('radio', { name: /OpenPost Page/ }).click();
+		await screen.getByRole('radio', { name: /MaréPost Page/ }).click();
 		await screen.getByRole('button', { name: 'Connect selected account' }).click();
 
 		await vi.waitFor(() =>

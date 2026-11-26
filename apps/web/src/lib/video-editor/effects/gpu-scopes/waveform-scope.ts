@@ -1,4 +1,4 @@
-/** Ported from FreeCut (MIT), adapted to OpenPost's Svelte scope surface. */
+/** Ported from FreeCut (MIT), adapted to MaréPost's Svelte scope surface. */
 /**
  * GPU-accelerated waveform scope.
  * Compute shader accumulates pixel intensities with Gaussian spread,

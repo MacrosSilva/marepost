@@ -2,7 +2,7 @@ import type { TimerSettings } from '../timers/timer';
 import type { PaperBackgroundId } from '../effects/paper/catalog';
 import type { GpuParamValues } from '../effects/gpu/types';
 /**
- * Project document model for the OpenPost Video Editor.
+ * Project document model for the MaréPost Video Editor.
  *
  * Ported from FreeCut (MIT) - types/project.ts - adapted to the current surface:
  * video / audio / image / Lottie / text / subtitle / shape / adjustment / controller /
@@ -1005,7 +1005,7 @@ export interface Project {
 	 * Schema version for migrations. Projects without this field are version 1.
 	 */
 	schemaVersion?: number;
-	/** Distinguishes OpenPost's schema history from compatible foreign project formats. */
+	/** Distinguishes MaréPost's schema history from compatible foreign project formats. */
 	schemaFamily?: 'openpost';
 	thumbnailId?: string;
 	metadata: ProjectResolution;

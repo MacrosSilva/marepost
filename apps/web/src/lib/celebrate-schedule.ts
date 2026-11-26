@@ -14,7 +14,7 @@ export async function celebrateSchedule() {
 	}, CELEBRATION_DURATION_MS);
 
 	const { default: confetti } = await import('canvas-confetti');
-	const colors = ['#b74c05', '#f18a3b', '#ffd6ad', '#fff7ed'];
+	const colors = ['#14365c', '#f18a3b', '#ffd6ad', '#fff7ed'];
 	const shared = {
 		colors,
 		disableForReducedMotion: true,

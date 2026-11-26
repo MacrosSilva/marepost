@@ -47,7 +47,7 @@
 			<p id="purchase-choice-title" class="text-xs font-medium text-muted-foreground">
 				{m.purchase_choice_heading()}
 			</p>
-			<p class="mt-1 font-semibold">OpenPost {choice.plan_name}</p>
+			<p class="mt-1 font-semibold">MaréPost {choice.plan_name}</p>
 			<p class="text-sm text-muted-foreground">{price}{period}</p>
 		</div>
 		<a

@@ -36,7 +36,7 @@ function rectangleLayer(): ImageEditorLayer {
 	};
 }
 
-describe('OpenPost Image Editor design resize', () => {
+describe('MaréPost Image Editor design resize', () => {
 	it('resizes only the selected page and keeps other page formats intact', () => {
 		const source = blankImageEditorDocument({
 			...preset,

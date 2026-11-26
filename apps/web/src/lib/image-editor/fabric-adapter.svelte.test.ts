@@ -457,7 +457,7 @@ async function freshRenderDigest(page: ImageEditorPage, selectedIDs: string[]): 
 	}
 }
 
-describe('OpenPost Image Editor Fabric reconciliation', () => {
+describe('MaréPost Image Editor Fabric reconciliation', () => {
 	it('persists a rotated mixed selection without changing its rendered pixels', async () => {
 		interface ActiveSelectionFixture {
 			set(updates: { angle: number }): void;
@@ -527,7 +527,7 @@ describe('OpenPost Image Editor Fabric reconciliation', () => {
 	});
 });
 
-describe('OpenPost Image Editor text layer outlines', () => {
+describe('MaréPost Image Editor text layer outlines', () => {
 	function textLayer(): ImageEditorLayer {
 		return {
 			...renderLayer('text', 40, 40, 260, 100),

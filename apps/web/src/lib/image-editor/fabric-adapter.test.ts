@@ -109,7 +109,7 @@ interface ImageObjectFixture extends ImageEditorImageGeometry {
 	applyFilters(): void;
 }
 
-describe('OpenPost Image Editor image geometry', () => {
+describe('MaréPost Image Editor image geometry', () => {
 	it('builds a centered pixel grid with transparent padding at image edges', () => {
 		const image = {
 			width: 2,
@@ -153,7 +153,7 @@ describe('OpenPost Image Editor image geometry', () => {
 	});
 });
 
-describe('OpenPost Image Editor rotation gestures', () => {
+describe('MaréPost Image Editor rotation gestures', () => {
 	it('configures snapping before Fabric calculates the angle without rewriting the live angle', () => {
 		interface RotationTargetFixture {
 			angle: number;
@@ -252,7 +252,7 @@ describe('OpenPost Image Editor rotation gestures', () => {
 	});
 });
 
-describe('OpenPost Image Editor point snapping', () => {
+describe('MaréPost Image Editor point snapping', () => {
 	it('uses the nearest axis target without changing pointer metadata', () => {
 		const snapped = snapImageEditorPoint(
 			{ x: 104, y: 197, pressure: 0.75 },
@@ -275,7 +275,7 @@ describe('OpenPost Image Editor point snapping', () => {
 	});
 });
 
-describe('OpenPost Image Editor screen zoom', () => {
+describe('MaréPost Image Editor screen zoom', () => {
 	it('combines Fabric and CSS scaling so tolerances remain stable on screen', () => {
 		expect(imageEditorScreenZoom(1, 464.4, 1080)).toBeCloseTo(0.43);
 		expect(imageEditorScreenZoom(2, 540, 1080)).toBe(1);
@@ -290,7 +290,7 @@ describe('OpenPost Image Editor screen zoom', () => {
 	});
 });
 
-describe('OpenPost Image Editor resize snapping', () => {
+describe('MaréPost Image Editor resize snapping', () => {
 	it('snaps a horizontal resize to the document edge', () => {
 		const snapped = snapImageEditorResize(
 			{ left: 30, top: 40, width: 1044, height: 500 },

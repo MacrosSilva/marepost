@@ -3,10 +3,10 @@ import type { ManifestOptions } from 'vite-plugin-pwa';
 export const appManifest = {
 	id: '/',
 	scope: '/',
-	name: 'OpenPost',
-	short_name: 'OpenPost',
+	name: 'MaréPost',
+	short_name: 'MaréPost',
 	description: 'Schedule and publish content across multiple social platforms.',
-	theme_color: '#b74c05',
+	theme_color: '#14365c',
 	background_color: '#faf9f7',
 	display: 'standalone',
 	start_url: '/',

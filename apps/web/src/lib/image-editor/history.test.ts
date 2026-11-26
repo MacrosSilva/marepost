@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ImageEditorHistory } from './history';
 
-describe('OpenPost Image Editor command history', () => {
+describe('MaréPost Image Editor command history', () => {
 	afterEach(() => vi.useRealTimers());
 
 	it('coalesces continuous edits with the same key', () => {

@@ -43,7 +43,7 @@ function layer(overrides: Partial<ImageEditorLayer['transform']> = {}): ImageEdi
 	};
 }
 
-describe('OpenPost Image Editor interactive crop geometry', () => {
+describe('MaréPost Image Editor interactive crop geometry', () => {
 	it('repositions source pixels without moving the outer crop frame', () => {
 		const result = applyImageEditorCropWindow(
 			layer(),

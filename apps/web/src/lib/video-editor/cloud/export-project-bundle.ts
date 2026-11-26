@@ -57,7 +57,7 @@ function createCloudBundleRuntime(repository: CloudBundleRepository): BundleExpo
 			const snapshot: ProjectSnapshot = {
 				version: PROJECT_SNAPSHOT_VERSION,
 				exportedAt: new Date().toISOString(),
-				editorVersion: 'OpenPost',
+				editorVersion: 'MaréPost',
 				project: structuredClone(cloudProject.document),
 				mediaReferences: projectMedia.map(mediaReference)
 			};

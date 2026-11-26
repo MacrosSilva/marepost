@@ -81,7 +81,7 @@ describe('publication composer payloads', () => {
 			{ id: 'threads-1', platform: 'threads', account_username: 'openpost' },
 			{ id: 'x-1', platform: 'x', account_username: 'openpost' },
 			{ id: 'mastodon-1', platform: 'mastodon', account_username: 'openpost' },
-			{ id: 'linkedin-1', platform: 'linkedin', account_username: 'OpenPost' }
+			{ id: 'linkedin-1', platform: 'linkedin', account_username: 'MaréPost' }
 		];
 		const payload = buildPublicationPayload({
 			mode: 'post',
@@ -190,7 +190,7 @@ describe('publication composer payloads', () => {
 			const linkedin = {
 				id: 'li-1',
 				platform: 'linkedin',
-				account_username: 'OpenPost'
+				account_username: 'MaréPost'
 			};
 			const payload = buildPublicationPayload({
 				mode: 'post',
@@ -256,7 +256,7 @@ describe('publication composer payloads', () => {
 		const linkedin = {
 			id: 'li-1',
 			platform: 'linkedin',
-			account_username: 'OpenPost'
+			account_username: 'MaréPost'
 		};
 		const payload = buildPublicationPayload({
 			mode: 'thread',

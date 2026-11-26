@@ -118,7 +118,7 @@ describe('project snapshot service', () => {
 		snapshot.checksum = await computeSnapshotChecksum(snapshot);
 
 		await expect(testRuntime.service.importProjectSnapshot(snapshot)).rejects.toThrow(
-			'Update OpenPost before importing it'
+			'Update MaréPost before importing it'
 		);
 		expect(testRuntime.created).toEqual([]);
 	});
