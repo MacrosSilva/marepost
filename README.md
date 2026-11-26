@@ -26,6 +26,14 @@
 - **Automatizar** com workflows (RSS, releases do GitHub, prompts agendados) e com IA opcional.
 - **Usar com assistentes de IA** via MCP (Claude, ChatGPT, Cursor e outros), API, CLI e n8n.
 
+## Telas
+
+<p align="center">
+  <img src="./docs/marepost/inicio.jpg" alt="Página inicial do MaréPost" width="32%">
+  <img src="./docs/marepost/entrar.jpg" alt="Tela de entrar" width="32%">
+  <img src="./docs/marepost/criar-conta.jpg" alt="Tela de criar conta" width="32%">
+</p>
+
 ## Instalar
 
 Você precisa do [Docker](https://docs.docker.com/get-docker/) instalado.

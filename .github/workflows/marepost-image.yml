@@ -3,6 +3,10 @@ name: Imagem Docker do MaréPost
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - 'NOTICE.md'
+      - 'docs/**'
   workflow_dispatch:
 
 permissions:
