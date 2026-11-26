@@ -34,6 +34,16 @@
   <img src="./docs/marepost/criar-conta.jpg" alt="Tela de criar conta" width="32%">
 </p>
 
+<p align="center">
+  <img src="./docs/marepost/calendario.jpg" alt="Calendário de publicações" width="49%">
+  <img src="./docs/marepost/compositor.jpg" alt="Escrever uma nova publicação" width="49%">
+  <img src="./docs/marepost/estudio.jpg" alt="Estúdio: editores de imagem e vídeo, corte rápido e gravador" width="49%">
+  <img src="./docs/marepost/automacoes.jpg" alt="Automações" width="49%">
+  <img src="./docs/marepost/contas.jpg" alt="Conectar contas das redes sociais" width="49%">
+</p>
+
+<sub>Nome e e-mail nas telas internas são de exemplo.</sub>
+
 ## Instalar
 
 Você precisa do [Docker](https://docs.docker.com/get-docker/) instalado.
