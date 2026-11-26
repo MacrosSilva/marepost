@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AppBrandingRuntime from '$lib/components/app-branding-runtime.svelte';
+	import Logo from '$lib/components/Logo.svelte';
 	import { appBranding } from '$lib/app-branding.svelte';
 	import './layout.css';
 	import PwaManager from '$lib/components/pwa-manager.svelte';
@@ -643,6 +644,9 @@
 			{:else if currentPath === '/'}
 				<div class="flex min-h-[80dvh] items-center justify-center">
 					<div class="mx-auto max-w-md px-4 py-12 text-center">
+						<div class="mb-6 flex justify-center">
+							<Logo width={56} height={56} showText class="text-3xl" />
+						</div>
 						<p class="mb-6 text-muted-foreground">{m.landing_tagline()}</p>
 						<div class="flex justify-center gap-4">
 							<a
