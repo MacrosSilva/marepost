@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<base href="/manual/">
+<meta name="google" content="notranslate">
+<title>MaréPost: manual de uso</title>
+<link rel="icon" href="/assets/brand/icon.svg">
+<style>
+  :root{
+    --fundo-esc:#0a1628; --meio:#0f2442; --azul:#14365c; --onda:#6ea0ff; --onda-esc:#2f62c4; --claro:#e8f0ff;
+    --texto:#14213a; --texto2:#55627a; --linha:#dbe3f0; --fundo:#f5f8fd; --tint:#eaf1ff; --branco:#fff;
+    --sombra:0 1px 3px rgba(10,22,40,.08),0 6px 20px rgba(10,22,40,.05);
+    --raio:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);
+    background:var(--fundo);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--onda-esc)}
+  b{overflow-wrap:anywhere}
+
+  .topo{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;height:56px;padding:0 18px;
+    background:var(--fundo-esc);color:#fff}
+  .topo .marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+  .topo .marca img{height:34px;width:auto;display:block}
+  .topo .sub{font-size:13px;opacity:.75;padding-left:12px;border-left:1px solid rgba(255,255,255,.2)}
+  .topo .acoes{margin-left:auto;display:flex;gap:8px}
+  .topo .btn{background:rgba(255,255,255,.1);border:0;color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;
+    font-size:14px;text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
+  .topo .btn:hover{background:rgba(255,255,255,.18)}
+  .topo .abre{display:none}
+
+  .capa-doc{background:radial-gradient(900px 360px at 88% -20%,rgba(110,160,255,.22),transparent 60%),
+    linear-gradient(160deg,#14365c,#0a1628);color:#fff;padding:46px clamp(20px,5vw,64px) 42px}
+  .capa-doc .eyebrow{color:var(--onda);font-weight:700;font-size:13px;letter-spacing:.4px;margin:0 0 8px;text-transform:uppercase}
+  .capa-doc h1{font-size:clamp(28px,4.6vw,50px);line-height:1.04;margin:0 0 12px;font-weight:800;letter-spacing:-1px}
+  .capa-doc p{margin:0;max-width:68ch;color:rgba(255,255,255,.86);font-size:clamp(15px,1.7vw,18px)}
+
+  .quadro{display:grid;grid-template-columns:270px 1fr;max-width:1240px;margin:0 auto}
+  .indice{position:sticky;top:56px;align-self:start;max-height:calc(100vh - 56px);overflow:auto;
+    padding:22px 8px 40px 20px;border-right:1px solid var(--linha)}
+  .indice h2{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--texto2);margin:0 0 10px}
+  .busca{width:100%;padding:9px 11px;border:1px solid var(--linha);border-radius:8px;font:inherit;font-size:14px;
+    margin:0 0 12px;background:var(--branco);color:var(--texto)}
+  .busca:focus{outline:2px solid var(--onda);outline-offset:1px}
+  .indice ol{list-style:none;margin:0;padding:0;counter-reset:sec}
+  .indice a{display:block;padding:7px 10px;border-radius:7px;color:var(--texto);text-decoration:none;font-size:14px;counter-increment:sec}
+  .indice a::before{content:counter(sec) ". ";color:var(--onda-esc);font-weight:700}
+  .indice a:hover{background:var(--tint)}
+  .indice a.aqui{background:var(--tint);font-weight:700}
+  .indice li.oculto{display:none}
+  .sem-resultado{display:none;font-size:13.5px;color:var(--texto2);padding:6px 10px}
+
+  .corpo{padding:30px clamp(18px,4vw,52px) 80px;min-width:0;counter-reset:capn}
+  section.cap{scroll-margin-top:66px;padding:14px 0 32px;border-bottom:1px solid var(--linha)}
+  section.cap:last-child{border-bottom:0}
+  h2.cap-tit{font-size:clamp(21px,2.6vw,28px);margin:8px 0 6px;font-weight:800;letter-spacing:-.4px;counter-increment:capn}
+  h2.cap-tit::before{content:counter(capn) ". ";color:var(--onda-esc)}
+  h3{font-size:17px;color:var(--azul);margin:22px 0 6px}
+  p{max-width:76ch}
+  p.intro{color:var(--texto2);margin:0 0 12px;max-width:76ch}
+  ol.passos{margin:8px 0 0;padding-left:22px}
+  ol.passos li,ul.lista li{margin:6px 0;max-width:76ch}
+  ul.lista{margin:8px 0 0;padding-left:20px}
+  strong.pergunta{color:var(--azul)}
+  .via{display:inline-block;background:var(--tint);color:var(--azul);font-size:12.5px;padding:2px 8px;border-radius:6px;
+    font-weight:600;margin:0 2px;white-space:nowrap}
+  .nota{background:var(--tint);border-left:4px solid var(--onda);padding:12px 16px;border-radius:8px;margin:14px 0 0;
+    font-size:14.5px;color:var(--azul);max-width:82ch}
+  .aviso{background:#fff6e5;border-left:4px solid #d99a1e;padding:12px 16px;border-radius:8px;margin:14px 0 0;
+    font-size:14.5px;color:#5a4210;max-width:82ch}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;max-width:860px}
+  .mini{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:14px 16px;box-shadow:var(--sombra)}
+  .mini h3{margin:0 0 4px;font-size:15px}
+  .mini p{margin:0;font-size:13.5px;color:var(--texto2)}
+
+  figure.print{margin:16px 0 18px;max-width:941px;border:1px solid #c7d3e6;border-radius:var(--raio);overflow:hidden;
+    background:var(--branco);box-shadow:var(--sombra)}
+  figure.print::before{content:attr(data-url);display:block;padding:6px 12px;font-size:12px;color:var(--texto2);
+    background:#e9eef7;border-bottom:1px solid #c7d3e6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  figure.print img{display:block;width:100%;height:auto}
+  figure.print figcaption{padding:6px 12px;font-size:12.5px;color:var(--texto2);border-top:1px solid var(--linha)}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:941px}
+  .duas figure.print{margin:16px 0 0}
+
+  details.faq{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:10px 16px;margin:10px 0;max-width:86ch}
+  details.faq summary{cursor:pointer;font-weight:700;color:var(--azul)}
+  details.faq p{margin:8px 0 2px}
+
+  .rodape{background:var(--fundo-esc);color:rgba(255,255,255,.75);font-size:13px;padding:18px 22px;text-align:center}
+  .rodape b{color:#fff}
+  .rodape a{color:var(--onda)}
+
+  @media(max-width:900px){
+    .quadro{grid-template-columns:1fr}
+    .indice{position:fixed;inset:56px auto 0 0;width:84%;max-width:320px;background:var(--branco);z-index:60;
+      box-shadow:0 0 40px rgba(0,0,0,.2);transform:translateX(-105%);transition:transform .22s}
+    .indice.aberto{transform:none}
+    .topo .abre{display:inline-flex}
+    .topo .sub,.topo .imprimir{display:none}
+    .cards,.duas{grid-template-columns:1fr}
+  }
+
+  .capa-pdf{display:none}
+  @page{size:A4;margin:16mm 14mm 18mm 14mm}
+  @media print{
+    html,body{background:#fff}
+    .topo,.rodape,.capa-doc,.busca,.sem-resultado{display:none !important}
+    .capa-pdf{display:flex;flex-direction:column;justify-content:center;min-height:250mm;padding:20mm 10mm;break-after:page}
+    .capa-pdf img{height:16mm;width:auto;margin-bottom:16mm;align-self:flex-start}
+    .capa-pdf .eyebrow{color:var(--onda-esc);font-weight:700;font-size:13pt;margin:0 0 8mm}
+    .capa-pdf h1{font-size:34pt;line-height:1.05;margin:0 0 6mm;font-weight:800}
+    .capa-pdf p{font-size:12pt;color:var(--texto2);max-width:130mm}
+    .quadro{display:block;max-width:none}
+    .indice{position:static;max-height:none;overflow:visible;border:0;padding:0 0 10mm;break-after:page;transform:none;
+      width:auto;max-width:none;box-shadow:none;background:transparent}
+    .indice h2{font-size:16pt;text-transform:none;letter-spacing:0;color:var(--texto);margin:0 0 6mm}
+    .indice a{font-size:11pt;padding:2px 0}
+    .indice li.oculto{display:block}
+    .corpo{padding:0}
+    section.cap{border:0;padding:0 0 6mm;break-before:page}
+    section.cap:first-of-type{break-before:auto}
+    h3{break-after:avoid}
+    .nota,.aviso,.mini,figure.print,details.faq{break-inside:avoid;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    details.faq{display:block}
+    a{text-decoration:none;color:inherit}
+  }
+</style>
+</head>
+<body>
+<div class="topo">
+  <a class="marca" href="/"><img src="img/marepost-claro.svg" alt="MaréPost"><span class="sub">Manual de uso</span></a>
+  <div class="acoes">
+    <button class="btn imprimir" type="button" onclick="window.print()">Imprimir / PDF</button>
+    <a class="btn" href="/">Abrir o MaréPost</a>
+    <button class="btn abre" id="abre-indice" type="button" aria-controls="indice" aria-expanded="false">Sumário</button>
+  </div>
+</div>
+
+<header class="capa-pdf" aria-hidden="true">
+  <img src="img/marepost.svg" alt="">
+  <p class="eyebrow">Crie, agende e publique seus posts</p>
+  <h1>Manual de uso</h1>
+  <p>Do primeiro acesso à publicação agendada: onde cada tela abre, o que ela faz e o passo a passo.</p>
+  <p>A versão viva deste manual fica no próprio MaréPost, em <b>/manual</b>.</p>
+</header>
+
+<header class="capa-doc">
+  <p class="eyebrow">Crie, agende e publique seus posts</p>
+  <h1>Manual de uso</h1>
+  <p>Como usar o MaréPost no dia a dia: conectar as suas redes, escrever uma publicação uma vez só, agendar, acompanhar os resultados e criar imagens e vídeos. Cada capítulo diz onde a tela fica no menu, o que ela faz e o passo a passo.</p>
+</header>
+
+<div class="quadro">
+  <nav class="indice" id="indice" aria-label="Sumário">
+    <h2>Sumário</h2>
+    <input class="busca" id="busca" type="search" placeholder="Buscar no manual" aria-label="Buscar no manual">
+    <ol id="lista-indice">
+      <li><a href="#visao">Conhecendo o MaréPost</a></li>
+      <li><a href="#entrar">Entrar e criar a conta</a></li>
+      <li><a href="#primeiro-dia">O primeiro dia</a></li>
+      <li><a href="#contas">Conectar as redes</a></li>
+      <li><a href="#escrever">Escrever uma publicação</a></li>
+      <li><a href="#agendar">Agendar ou publicar agora</a></li>
+      <li><a href="#publicacoes">Acompanhar as publicações</a></li>
+      <li><a href="#horarios">Horários fixos da semana</a></li>
+      <li><a href="#caixa">Caixa de entrada</a></li>
+      <li><a href="#analises">Análises</a></li>
+      <li><a href="#ideias">Ideias com IA</a></li>
+      <li><a href="#estudio">Estúdio: imagens e vídeos</a></li>
+      <li><a href="#midia">Mídia</a></li>
+      <li><a href="#automacoes">Automações</a></li>
+      <li><a href="#configuracoes">Configurações</a></li>
+      <li><a href="#celular">No celular</a></li>
+      <li><a href="#duvidas">Dúvidas frequentes</a></li>
+    </ol>
+    <p class="sem-resultado" id="sem-resultado">Nada encontrado. Tente outra palavra.</p>
+  </nav>
+
+  <main class="corpo">
+
+    <section class="cap" id="visao">
+      <h2 class="cap-tit">Conhecendo o MaréPost</h2>
+      <p class="intro">O MaréPost é onde você escreve, agenda e publica nas suas redes sociais, tudo num lugar só. Ele roda no seu próprio computador: seus textos, imagens e contas ficam com você.</p>
+      <h3>O menu da esquerda</h3>
+      <p>Tudo começa pelo menu lateral. De cima para baixo:</p>
+      <div class="cards">
+        <div class="mini"><h3>Nova publicação</h3><p>O botão azul no topo. Abre o editor para escrever um post.</p></div>
+        <div class="mini"><h3>Publicações</h3><p>O que está agendado, o que já saiu, o que falhou e os rascunhos.</p></div>
+        <div class="mini"><h3>Caixa de entrada</h3><p>Comentários, mensagens e avaliações das suas redes.</p></div>
+        <div class="mini"><h3>Análises</h3><p>Visualizações, engajamento e seguidores de cada conta.</p></div>
+        <div class="mini"><h3>Ideias</h3><p>A IA sugere posts a partir de um assunto.</p></div>
+        <div class="mini"><h3>Estúdio</h3><p>Editores de imagem e de vídeo, corte rápido e gravador de tela.</p></div>
+        <div class="mini"><h3>Mídia</h3><p>A biblioteca com todas as suas imagens, vídeos e logos.</p></div>
+        <div class="mini"><h3>Automações</h3><p>Fluxos que trabalham sozinhos, como republicar posts.</p></div>
+      </div>
+      <p>No rodapé do menu ficam <span class="via">Contas</span> (as redes conectadas), <span class="via">Configurações</span> e o seu perfil. Clicando no seu perfil, abre um menu com preferências, ajuda, este <b>Manual de uso</b> e <b>Sair</b>.</p>
+      <div class="nota"><b>Dica:</b> o nome que aparece no topo do menu é o seu <b>espaço de trabalho</b>. Cada espaço tem as suas próprias contas, publicações e mídias. Dá para ter um para você e outro para a empresa, e trocar entre eles clicando no nome.</div>
+    </section>
+
+    <section class="cap" id="entrar">
+      <h2 class="cap-tit">Entrar e criar a conta</h2>
+      <p class="intro">O acesso é pelo navegador, no endereço do seu MaréPost (no computador onde ele está instalado, <b>http://localhost:8080</b>; de fora, o endereço público que você configurou).</p>
+      <div class="duas">
+        <figure class="print" data-url="/login"><img src="img/entrar.jpg" alt="Tela de entrar" loading="lazy"><figcaption>Entrar</figcaption></figure>
+        <figure class="print" data-url="/register"><img src="img/criar-conta.jpg" alt="Tela de criar conta" loading="lazy"><figcaption>Criar conta</figcaption></figure>
+      </div>
+      <h3>Criar a conta (só na primeira vez)</h3>
+      <ol class="passos">
+        <li>Abra o endereço do MaréPost e clique em <b>Criar conta</b>.</li>
+        <li>Preencha nome, e-mail e uma senha forte.</li>
+        <li>Pronto: a <b>primeira conta criada é a do administrador</b> da instalação.</li>
+      </ol>
+      <h3>Entrar no dia a dia</h3>
+      <ol class="passos">
+        <li>Abra o endereço do MaréPost.</li>
+        <li>Digite o e-mail e a senha e clique em <b>Entrar</b>.</li>
+      </ol>
+      <div class="aviso"><b>Se o MaréPost estiver aberto na internet</b> (com o Tailscale Funnel, por exemplo), feche os cadastros depois de criar a sua conta, para ninguém mais conseguir criar uma. O guia de instalação no GitHub explica como.</div>
+      <div class="nota"><b>Esqueceu a senha?</b> Use <b>Esqueceu sua senha?</b> na tela de entrar. Para o e-mail de recuperação chegar, a instalação precisa ter um servidor de e-mail configurado; sem isso, peça ajuda a quem instalou.</div>
+    </section>
+
+    <section class="cap" id="primeiro-dia">
+      <h2 class="cap-tit">O primeiro dia</h2>
+      <p class="intro">Cinco ajustes rápidos que deixam tudo pronto para usar. Faça nesta ordem.</p>
+      <ol class="passos">
+        <li><strong class="pergunta">Acerte o fuso horário.</strong> Em <span class="via">Configurações › Geral</span>, troque <b>Fuso horário</b> de UTC para o seu (por exemplo, <b>America/Sao_Paulo</b> ou <b>America/Bahia</b>) e clique em <b>Salvar alterações</b>. Sem isso, um post marcado para as 9h sai às 6h.</li>
+        <li><strong class="pergunta">Dê nome ao espaço de trabalho.</strong> Na mesma tela, troque o nome e, se quiser, a imagem e a cor.</li>
+        <li><strong class="pergunta">Conecte as suas redes.</strong> Em <span class="via">Contas</span>, veja o capítulo <a href="#contas">Conectar as redes</a>.</li>
+        <li><strong class="pergunta">Defina os horários da semana.</strong> Em <span class="via">Configurações › Agenda de publicações</span>, veja <a href="#horarios">Horários fixos da semana</a>.</li>
+        <li><strong class="pergunta">Escolha o tema.</strong> No seu perfil (rodapé do menu), escolha claro, escuro ou igual ao do sistema.</li>
+      </ol>
+      <figure class="print" data-url="/settings"><img src="img/configuracoes.jpg" alt="Configurações gerais do espaço de trabalho" loading="lazy"><figcaption>Configurações › Geral: nome, cor e fuso horário</figcaption></figure>
+    </section>
+
+    <section class="cap" id="contas">
+      <h2 class="cap-tit">Conectar as redes</h2>
+      <p class="intro">Antes de publicar, o MaréPost precisa da sua autorização em cada rede. Isso é feito uma vez por conta.</p>
+      <p><span class="via">Contas</span></p>
+      <figure class="print" data-url="/accounts"><img src="img/contas.jpg" alt="Tela de contas conectadas" loading="lazy"><figcaption>No alto, as contas já conectadas; embaixo, as redes disponíveis</figcaption></figure>
+      <ol class="passos">
+        <li>Clique em <span class="via">Contas</span> no rodapé do menu.</li>
+        <li>Em <b>Adicionar uma conta</b>, procure a rede (Instagram, LinkedIn, Bluesky, Mastodon, Telegram, Discord e outras) e clique em <b>Conectar</b>.</li>
+        <li>A rede abre a própria tela de login. Entre com a conta que vai receber os posts e aceite as permissões.</li>
+        <li>Você volta para o MaréPost e a conta aparece em <b>Contas conectadas</b>.</li>
+      </ol>
+      <h3>Instagram</h3>
+      <ul class="lista">
+        <li>A conta precisa ser <b>profissional</b> (Criador de conteúdo ou Comercial) e estar ligada a uma <b>Página do Facebook</b>.</li>
+        <li>Clique em <b>Conectar</b> no Instagram e escolha <b>Continuar com o Facebook</b>. Entre com o Facebook que administra a Página, marque a Página e a conta do Instagram e confirme.</li>
+        <li>O Instagram <b>só aceita posts com imagem ou vídeo</b>. Post só de texto não sai.</li>
+      </ul>
+      <h3>LinkedIn</h3>
+      <ul class="lista">
+        <li>Os posts saem no seu <b>perfil pessoal</b>. Clique em <b>Conectar</b>, entre no LinkedIn e autorize.</li>
+      </ul>
+      <div class="aviso"><b>Não aparece o botão de uma rede, ou ela dá erro ao conectar?</b> Algumas redes (Instagram, LinkedIn, X, TikTok, YouTube) exigem um "app" cadastrado por quem instalou o MaréPost. Sem esse cadastro, a rede fica desligada. O passo a passo está no README do projeto no GitHub, na seção <b>Usar de graça, com as redes conectadas</b>.</div>
+      <div class="nota"><b>Desconectar ou reconectar:</b> nos três pontinhos (<b>⋯</b>) do cartão da conta. Reconecte quando a rede pedir login de novo ou quando um post falhar por permissão.</div>
+    </section>
+
+    <section class="cap" id="escrever">
+      <h2 class="cap-tit">Escrever uma publicação</h2>
+      <p class="intro">Você escreve uma vez e o MaréPost entrega em todas as contas escolhidas, cada uma no formato da sua rede.</p>
+      <p><span class="via">Nova publicação</span></p>
+      <figure class="print" data-url="/"><img src="img/nova-publicacao.jpg" alt="Editor de nova publicação com pré-visualização" loading="lazy"><figcaption>O editor: destinos no alto, texto no meio, pré-visualização à direita</figcaption></figure>
+      <ol class="passos">
+        <li>Clique em <b>Nova publicação</b> (botão azul no topo do menu).</li>
+        <li><strong class="pergunta">Escolha onde publicar.</strong> No alto, à esquerda, abra <b>Destinos</b> e marque as contas.</li>
+        <li><strong class="pergunta">Escreva o texto</strong> no campo do meio. O contador embaixo mostra quantos caracteres a rede aceita (no Instagram, 2.200).</li>
+        <li><strong class="pergunta">Adicione imagem ou vídeo</strong> pelo ícone de imagem embaixo do texto, ou arrastando o arquivo para o editor. Dá para escolher da sua <a href="#midia">Mídia</a>.</li>
+        <li><strong class="pergunta">Confira a pré-visualização</strong> à direita: ela mostra como o post vai aparecer na rede.</li>
+        <li>Quando estiver pronto, veja o próximo capítulo: <a href="#agendar">Agendar ou publicar agora</a>.</li>
+      </ol>
+      <h3>Um texto diferente para cada rede</h3>
+      <p>Logo acima do texto há abas: <b>Todos</b> e uma aba para cada conta escolhida. Em <b>Todos</b>, o que você escreve vale para todas. Clicando na aba de uma conta, você muda o texto ou a mídia só dela, por exemplo uma versão mais curta para o X e uma mais formal para o LinkedIn.</p>
+      <h3>Detalhes obrigatórios do destino</h3>
+      <p>Algumas redes pedem coisas a mais antes de publicar. Quando falta algo, aparece o quadro <b>Detalhes obrigatórios do destino</b> com o que é preciso, como <b>Mídia obrigatória</b> no Instagram. O número vermelho na aba da conta mostra quantas pendências ainda há.</p>
+      <h3>Sequência de posts (thread)</h3>
+      <p>Clique em <b>+ Adicionar publicação</b> embaixo do texto para emendar mais uma parte. Nas redes que aceitam sequência (X, Threads, Bluesky e outras), elas saem em fila, uma respondendo à outra.</p>
+      <div class="nota"><b>Rascunho automático:</b> tudo o que você escreve fica salvo sozinho. Se fechar a página, o texto continua em <span class="via">Publicações › Rascunhos</span> e também aparece no menu lateral.</div>
+      <div class="nota"><b>Sem ideia do que escrever?</b> O botão <b>Ideias</b>, à direita do texto, pede sugestões à IA (se ela estiver ligada na sua instalação).</div>
+    </section>
+
+    <section class="cap" id="agendar">
+      <h2 class="cap-tit">Agendar ou publicar agora</h2>
+      <p class="intro">O botão do canto superior direito do editor decide quando o post sai.</p>
+      <div class="cards">
+        <div class="mini"><h3>Enfileirar próximo horário</h3><p>O botão principal. Coloca o post no próximo horário livre da sua agenda semanal.</p></div>
+        <div class="mini"><h3>Agendar</h3><p>Na setinha ao lado. Você escolhe o dia e a hora exatos.</p></div>
+        <div class="mini"><h3>Publicar agora</h3><p>Na setinha ao lado. Manda na hora para todas as contas escolhidas.</p></div>
+        <div class="mini"><h3>Rascunho</h3><p>Não clique em nada: o texto fica salvo para terminar depois.</p></div>
+      </div>
+      <h3>Passo a passo para agendar num dia e hora</h3>
+      <ol class="passos">
+        <li>Com o post pronto, clique na <b>setinha</b> ao lado de <b>Enfileirar próximo horário</b>.</li>
+        <li>Escolha <b>Agendar</b>.</li>
+        <li>Escolha o dia e a hora e confirme.</li>
+        <li>O post vai para <span class="via">Publicações › Agendadas</span> e aparece no calendário.</li>
+      </ol>
+      <div class="aviso"><b>Importante:</b> o MaréPost roda no seu computador. Um post agendado <b>só sai se o computador estiver ligado</b> e o MaréPost rodando na hora marcada. Se estiver desligado, ele sai assim que o computador voltar.</div>
+      <div class="nota"><b>Não apareceu "Enfileirar próximo horário"?</b> Ele precisa dos horários da semana. Configure em <a href="#horarios">Horários fixos da semana</a>, ou use <b>Agendar</b>.</div>
+    </section>
+
+    <section class="cap" id="publicacoes">
+      <h2 class="cap-tit">Acompanhar as publicações</h2>
+      <p class="intro">Tudo o que você já criou fica aqui, separado por situação.</p>
+      <p><span class="via">Publicações</span></p>
+      <figure class="print" data-url="/publications"><img src="img/publicacoes.jpg" alt="Calendário de publicações" loading="lazy"><figcaption>A visão em calendário, com o dia de hoje marcado</figcaption></figure>
+      <h3>As quatro abas</h3>
+      <ul class="lista">
+        <li><b>Agendadas</b>: vão sair no dia e hora marcados.</li>
+        <li><b>Publicadas</b>: já saíram. Daqui dá para abrir o post na rede.</li>
+        <li><b>Falhadas</b>: a rede recusou. Abra o post para ver o motivo, corrija e tente de novo.</li>
+        <li><b>Rascunhos</b>: ainda não foram agendados.</li>
+      </ul>
+      <h3>Três jeitos de ver</h3>
+      <ul class="lista">
+        <li><b>Lista</b>: um embaixo do outro, com busca.</li>
+        <li><b>Grade</b>: as imagens em quadradinhos, como o feed do Instagram.</li>
+        <li><b>Calendário</b>: por <b>Mês</b> ou <b>Semana</b>. Use as setas para trocar de mês e <b>Hoje</b> para voltar. <b>Filtros</b> mostra só algumas contas.</li>
+      </ul>
+      <h3>Mudar um post agendado</h3>
+      <ol class="passos">
+        <li>Clique no post (na lista ou no calendário).</li>
+        <li>Altere o texto, a mídia ou o horário.</li>
+        <li>Salve. Para desistir, use a opção de excluir no próprio post.</li>
+      </ol>
+    </section>
+
+    <section class="cap" id="horarios">
+      <h2 class="cap-tit">Horários fixos da semana</h2>
+      <p class="intro">Defina uma vez os horários em que você gosta de publicar. Depois, é só clicar em <b>Enfileirar próximo horário</b> e o MaréPost encaixa o post na próxima vaga.</p>
+      <p><span class="via">Configurações › Agenda de publicações</span></p>
+      <figure class="print" data-url="/settings"><img src="img/agenda.jpg" alt="Horários semanais de publicação" loading="lazy"><figcaption>Horário, dias da semana e o botão Adicionar horário</figcaption></figure>
+      <ol class="passos">
+        <li>Em <b>Horário de publicação</b>, escolha a hora (por exemplo, 09:00).</li>
+        <li>Em <b>Dias ativos</b>, marque os dias em que esse horário vale.</li>
+        <li>Clique em <b>Adicionar horário</b>. Repita para outros horários (por exemplo, 12:00 e 18:00).</li>
+      </ol>
+      <ul class="lista">
+        <li><b>Criar um padrão semanal</b> sugere uma grade pronta de horários.</li>
+        <li><b>Variação de agendamento</b> faz o post sair alguns minutos antes ou depois do horário, para parecer menos automático.</li>
+        <li><b>Seletor de horário do composer</b> define o intervalo de horas que aparece quando você agenda à mão.</li>
+      </ul>
+      <div class="nota"><b>Os horários seguem o fuso do espaço de trabalho.</b> Se aparecer "Novos horários usam UTC", acerte o fuso primeiro em <span class="via">Configurações › Geral</span>.</div>
+    </section>
+
+    <section class="cap" id="caixa">
+      <h2 class="cap-tit">Caixa de entrada</h2>
+      <p class="intro">Comentários, mensagens e avaliações de todas as redes num lugar só, para responder sem abrir cada aplicativo.</p>
+      <p><span class="via">Caixa de entrada</span></p>
+      <figure class="print" data-url="/inbox/engagement"><img src="img/caixa-de-entrada.jpg" alt="Caixa de entrada" loading="lazy"><figcaption>Abas Todas, Comentários, Mensagens e Avaliações</figcaption></figure>
+      <ol class="passos">
+        <li>Escolha a aba: <b>Todas</b>, <b>Comentários</b>, <b>Mensagens</b> ou <b>Avaliações</b>.</li>
+        <li>Use a busca ou <b>Filtros</b> para achar uma conversa.</li>
+        <li>Clique no item, escreva a resposta e envie.</li>
+      </ol>
+      <div class="nota"><b>Está vazia?</b> Os comentários e mensagens são buscados de tempos em tempos, e cada conta precisa ter essa função ligada nos detalhes dela, em <span class="via">Contas</span>. Use o botão de atualizar (as setinhas no canto) para buscar agora. No Instagram, a pessoa precisa mandar a primeira mensagem.</div>
+    </section>
+
+    <section class="cap" id="analises">
+      <h2 class="cap-tit">Análises</h2>
+      <p class="intro">Como suas contas e publicações estão indo: quem viu, quem interagiu e quantos seguidores você ganhou.</p>
+      <p><span class="via">Análises</span></p>
+      <figure class="print" data-url="/analytics"><img src="img/analises.jpg" alt="Painel de análises" loading="lazy"><figcaption>Visibilidade, engajamento, seguidores e publicações do período</figcaption></figure>
+      <ul class="lista">
+        <li><b>Todas as contas</b> (no alto): escolha uma conta ou veja todas juntas.</li>
+        <li><b>30 dias</b>: troque o período.</li>
+        <li>Os quatro cartões mostram <b>Visibilidade</b>, <b>Engajamento</b>, <b>Seguidores</b> e <b>Publicações</b>. Clique em um para ver o gráfico dele.</li>
+        <li>Mais abaixo: seguidores por conta e o desempenho de cada conta e de cada post.</li>
+        <li>O botão de <b>download</b> baixa os números numa planilha.</li>
+      </ul>
+      <div class="nota"><b>Os números aparecem com "—"?</b> É normal nos primeiros dias: as redes só entregam os dados depois que há posts publicados e a coleta roda. Em cada conta, a função <b>Análises</b> precisa estar ligada nos detalhes dela, em <span class="via">Contas</span>.</div>
+    </section>
+
+    <section class="cap" id="ideias">
+      <h2 class="cap-tit">Ideias com IA</h2>
+      <p class="intro">Conte o assunto e a IA escreve opções de posts para você escolher e ajustar.</p>
+      <p><span class="via">Ideias</span></p>
+      <figure class="print" data-url="/ideate"><img src="img/ideias.jpg" alt="Tela de ideias" loading="lazy"><figcaption>Assunto, contas e o botão Gerar opções</figcaption></figure>
+      <ol class="passos">
+        <li>Em <b>Sobre o que você quer publicar?</b>, escreva o assunto com suas palavras. Dá para <b>Anexar</b> uma imagem ou um arquivo de referência.</li>
+        <li>Em <b>Contas</b>, escolha para quais redes são os posts.</li>
+        <li>Abra <b>Voz e contexto</b> para dizer o tom (mais sério, mais leve, com emojis ou sem).</li>
+        <li>Marque <b>Criar uma série</b> se quiser vários posts sobre o mesmo tema.</li>
+        <li>Clique em <b>Gerar opções</b>, escolha a melhor e mande para o editor para revisar e agendar.</li>
+      </ol>
+      <ul class="lista">
+        <li><b>Encontrar temas</b> sugere assuntos quando você não sabe por onde começar.</li>
+      </ul>
+      <div class="aviso"><b>Revise sempre antes de publicar.</b> A IA erra. E, se ela for local (Ollama no seu computador), cada texto pode levar uns 30 segundos e o computador fica mais lento enquanto ela trabalha. Se a IA não estiver configurada na instalação, os botões de IA ficam desligados.</div>
+    </section>
+
+    <section class="cap" id="estudio">
+      <h2 class="cap-tit">Estúdio: imagens e vídeos</h2>
+      <p class="intro">Ferramentas para criar o conteúdo sem sair do MaréPost. Tudo o que você cria vai para a sua Mídia, pronto para usar num post.</p>
+      <p><span class="via">Estúdio</span></p>
+      <figure class="print" data-url="/studio"><img src="img/estudio.jpg" alt="Estúdio com os editores" loading="lazy"><figcaption>Criar (editores) e Biblioteca (modelos, perfis de voz e prompts)</figcaption></figure>
+      <div class="cards">
+        <div class="mini"><h3>Editor de imagens</h3><p>Imagens e carrosséis com camadas, textos, modelos e remoção de fundo.</p></div>
+        <div class="mini"><h3>Editor de vídeo</h3><p>Linha do tempo completa, legendas, cortes e trilha.</p></div>
+        <div class="mini"><h3>Corte rápido</h3><p>Corta um vídeo pelo texto falado: apague a frase e o trecho some.</p></div>
+        <div class="mini"><h3>Gravador</h3><p>Grava a tela e a câmera para tutoriais e demonstrações.</p></div>
+        <div class="mini"><h3>Modelos</h3><p>Designs reaproveitáveis: capas, memes, prints.</p></div>
+        <div class="mini"><h3>Perfis de voz e Prompts</h3><p>Ensinam à IA o seu jeito de escrever e guardam os pedidos que você repete.</p></div>
+      </div>
+      <h3>Criar uma imagem para o Instagram</h3>
+      <figure class="print" data-url="/image-editor"><img src="img/editor-de-imagens.jpg" alt="Editor de imagens com formatos prontos" loading="lazy"><figcaption>Escolha um formato pronto ou um modelo inicial</figcaption></figure>
+      <ol class="passos">
+        <li>Em <span class="via">Estúdio › Editor de imagens</span>, escolha o formato em <b>Escolha um formato</b> (por exemplo, <b>Quadrado do Instagram</b>, 1080 × 1080, ou <b>Retrato do Instagram</b>, 1080 × 1350).</li>
+        <li>Ou comece por um <b>Modelo inicial</b>, mais abaixo, e troque textos e imagens.</li>
+        <li>Para editar uma foto sua, use <b>Abrir uma imagem</b>.</li>
+        <li>Monte a arte com textos, formas e imagens. Cada item é uma camada que você move e redimensiona.</li>
+        <li>Salve. A arte fica em <b>Seus designs</b> e pode ser exportada para a Mídia e usada num post.</li>
+      </ol>
+      <div class="nota"><b>Carrossel:</b> adicione páginas à mesma arte; cada página vira um slide do carrossel no Instagram e no LinkedIn.</div>
+    </section>
+
+    <section class="cap" id="midia">
+      <h2 class="cap-tit">Mídia</h2>
+      <p class="intro">A biblioteca de imagens, vídeos, áudios e logos do espaço de trabalho, para reaproveitar em quantos posts quiser.</p>
+      <p><span class="via">Mídia</span></p>
+      <figure class="print" data-url="/media"><img src="img/midia.jpg" alt="Biblioteca de mídia" loading="lazy"><figcaption>Biblioteca, Temporária e Lixeira</figcaption></figure>
+      <ol class="passos">
+        <li>Clique em <b>Adicionar mídia</b> (ou <b>Enviar</b>) e escolha os arquivos do computador.</li>
+        <li>Procure pelo nome ou pelo texto alternativo na busca. Marque os preferidos com o coração e veja só eles em <b>Favoritos</b>.</li>
+        <li>No editor de publicação, escolha a mídia daqui para colocar no post.</li>
+      </ol>
+      <ul class="lista">
+        <li><b>Temporária</b>: arquivos enviados direto num post, que ainda não foram guardados na biblioteca.</li>
+        <li><b>Lixeira</b>: o que você apagou. Dá para recuperar antes de ser removido de vez.</li>
+        <li><b>Modelos</b> (no alto): abre os modelos do Estúdio.</li>
+      </ul>
+      <div class="nota"><b>Texto alternativo:</b> descreva o que tem na imagem. Ajuda quem usa leitor de tela e facilita a busca depois.</div>
+    </section>
+
+    <section class="cap" id="automacoes">
+      <h2 class="cap-tit">Automações</h2>
+      <p class="intro">Fluxos que fazem o trabalho repetitivo sozinhos: republicar um post de sucesso, transformar um blog (RSS) em posts, publicar novidades de um projeto no GitHub e outros.</p>
+      <p><span class="via">Automações</span></p>
+      <figure class="print" data-url="/workflows"><img src="img/automacoes.jpg" alt="Tela de automações" loading="lazy"><figcaption>Os seus fluxos, Execuções, Começar de um modelo e Conexões</figcaption></figure>
+      <h3>O jeito mais fácil: começar de um modelo</h3>
+      <ol class="passos">
+        <li>Clique em <b>Começar de um modelo</b>.</li>
+        <li>Escolha um modelo, por exemplo <b>Republicação automática</b>.</li>
+        <li>Preencha o que ele pede (contas, horários, regras) e ative.</li>
+      </ol>
+      <ul class="lista">
+        <li><b>Os seus fluxos</b>: os fluxos criados, ligados ou pausados.</li>
+        <li><b>Execuções</b>: o histórico de cada vez que um fluxo rodou, com o resultado.</li>
+        <li><b>Conexões</b>: serviços externos que os fluxos usam.</li>
+        <li><b>Novo fluxo</b>: monta um fluxo do zero, passo a passo.</li>
+      </ul>
+      <div class="aviso"><b>Comece pequeno.</b> Teste o fluxo com uma conta e confira as primeiras execuções antes de deixar rodando sozinho. Fluxos que usam IA ficam desligados se a IA não estiver configurada.</div>
+    </section>
+
+    <section class="cap" id="configuracoes">
+      <h2 class="cap-tit">Configurações</h2>
+      <p class="intro">Ajustes da sua pessoa e do espaço de trabalho.</p>
+      <p><span class="via">Configurações</span></p>
+      <h3>Pessoal</h3>
+      <ul class="lista">
+        <li><b>Perfil</b>: nome, foto e e-mail.</li>
+        <li><b>Notificações</b>: escolha quais avisos o MaréPost mostra.</li>
+        <li><b>Segurança</b>: trocar a senha e ligar o login em duas etapas com um app autenticador.</li>
+        <li><b>Acesso de desenvolvedor</b>: chaves para ligar o MaréPost a outras ferramentas (API, CLI, n8n, assistentes de IA). Só mexa se souber o que está fazendo, e nunca compartilhe uma chave.</li>
+      </ul>
+      <h3>Espaço de trabalho</h3>
+      <ul class="lista">
+        <li><b>Geral</b>: nome, imagem, cor, <b>fuso horário</b> e o primeiro dia da semana.</li>
+        <li><b>Marca</b>: o kit da marca (cores, fontes e logos), que aparece pronto nos editores do Estúdio.</li>
+        <li><b>Agenda de publicações</b>: os horários da semana (veja <a href="#horarios">Horários fixos da semana</a>).</li>
+        <li><b>Membros</b>: convide colaboradores e escolha o que cada um pode fazer neste espaço de trabalho.</li>
+        <li><b>Avançado</b>: opções técnicas e a <b>Zona de perigo</b>, onde se apaga o espaço de trabalho. Apagar não tem volta.</li>
+      </ul>
+      <h3>Aparência</h3>
+      <p>No seu perfil (rodapé do menu), escolha <b>Claro</b>, <b>Escuro</b> ou <b>Sistema</b>. Em <b>Preferências</b> ficam o idioma e os sons da interface.</p>
+    </section>
+
+    <section class="cap" id="celular">
+      <h2 class="cap-tit">No celular</h2>
+      <p class="intro">O MaréPost funciona no navegador do celular, pelo mesmo endereço público. No celular, o menu vira uma barra embaixo da tela, com <b>Mais</b> para o resto.</p>
+      <ol class="passos">
+        <li>No celular, abra o endereço público do seu MaréPost (por exemplo, <b>https://marepost.seu-tailnet.ts.net</b>) e entre.</li>
+        <li>Para ter um ícone na tela inicial: no Chrome do Android, menu <b>⋮ › Instalar app</b> (ou <b>Adicionar à tela inicial</b>); se o MaréPost oferecer, use também <b>Instalar aplicativo</b> no menu do seu perfil; no Safari do iPhone, <b>Compartilhar › Adicionar à Tela de Início</b>.</li>
+      </ol>
+      <div class="nota"><b>Só funciona com o computador ligado.</b> O celular acessa o MaréPost que está rodando no seu computador. Com o computador desligado, o endereço não abre.</div>
+    </section>
+
+    <section class="cap" id="duvidas">
+      <h2 class="cap-tit">Dúvidas frequentes</h2>
+      <details class="faq"><summary>O post agendado não saiu. E agora?</summary>
+        <p>Veja em <span class="via">Publicações › Falhadas</span>. Se ele estiver lá, abra para ler o motivo. Se ainda estiver em <b>Agendadas</b>, provavelmente o computador estava desligado na hora: ligue e espere alguns minutos.</p></details>
+      <details class="faq"><summary>O Instagram recusou o meu post.</summary>
+        <p>Os motivos mais comuns: post sem imagem ou vídeo, imagem fora do tamanho (use 1080 × 1080 ou 1080 × 1350), vídeo longo demais ou conta que deixou de ser profissional. Se o erro fala de permissão, reconecte a conta em <span class="via">Contas</span>.</p></details>
+      <details class="faq"><summary>O horário do post está errado (sai 3 horas antes).</summary>
+        <p>O fuso horário está em UTC. Troque em <span class="via">Configurações › Geral › Fuso horário</span> e salve. Confira os posts que já estavam agendados.</p></details>
+      <details class="faq"><summary>A rede pediu para conectar de novo.</summary>
+        <p>As redes expiram a autorização de tempos em tempos ou quando você troca a senha delas. Em <span class="via">Contas</span>, clique nos três pontinhos da conta e reconecte.</p></details>
+      <details class="faq"><summary>Posso usar com mais de uma marca?</summary>
+        <p>Sim. Clique no nome do espaço de trabalho, no topo do menu, e crie outro. Cada espaço tem as próprias contas, posts e mídias.</p></details>
+      <details class="faq"><summary>Outra pessoa pode me ajudar a postar?</summary>
+        <p>Pode. Convide pelo e-mail em <span class="via">Configurações › Membros</span>. Para ela entrar de fora, o MaréPost precisa estar acessível pelo endereço público.</p></details>
+      <details class="faq"><summary>Os botões de IA estão apagados.</summary>
+        <p>A IA não foi configurada nesta instalação. O README do projeto explica como ligar uma IA local e grátis com o Ollama.</p></details>
+      <details class="faq"><summary>Meus dados vão para algum lugar?</summary>
+        <p>Não. Tudo fica no computador onde o MaréPost está instalado. A telemetria vem desligada. Só saem os posts que você publica nas redes que conectou.</p></details>
+      <details class="faq"><summary>Como imprimir ou salvar este manual em PDF?</summary>
+        <p>Clique em <b>Imprimir / PDF</b>, no topo desta página, e escolha <b>Salvar como PDF</b>. O manual sai com capa, sumário e um capítulo por página.</p></details>
+    </section>
+
+  </main>
+</div>
+
+<footer class="rodape">
+  <b>MaréPost</b> &middot; Manual de uso &middot; <a href="https://github.com/MacrosSilva/marepost">código-fonte no GitHub</a> &middot; nomes e e-mails nas telas são de exemplo
+</footer>
+
+<script>
+(function(){
+  var indice=document.getElementById('indice'), abre=document.getElementById('abre-indice');
+  abre.addEventListener('click',function(){var a=indice.classList.toggle('aberto');abre.setAttribute('aria-expanded',a)});
+  indice.addEventListener('click',function(e){if(e.target.tagName==='A'){indice.classList.remove('aberto');abre.setAttribute('aria-expanded','false')}});
+
+  var links=[].slice.call(indice.querySelectorAll('ol a'));
+  var secoes=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+      links.forEach(function(a){a.classList.toggle('aqui',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+    secoes.forEach(function(s){if(s)obs.observe(s)});
+  }
+
+  function sem(t){return t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()}
+  var textos=secoes.map(function(s){return sem(s?s.textContent:'')});
+  var busca=document.getElementById('busca'), nada=document.getElementById('sem-resultado');
+  busca.addEventListener('input',function(){
+    var q=sem(busca.value.trim()), achou=0;
+    links.forEach(function(a,i){var ok=!q||textos[i].indexOf(q)>=0;a.parentNode.classList.toggle('oculto',!ok);if(ok)achou++});
+    nada.style.display=achou?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>

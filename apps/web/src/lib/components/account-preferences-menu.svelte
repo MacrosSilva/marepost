@@ -57,6 +57,15 @@
 >
 	<ThemeIcon role="feedback" class="size-4 text-muted-foreground" />{m.personal_help_feedback()}
 </DropdownMenu.Item>
+<DropdownMenu.Item
+	class="min-h-9 gap-3 [@media(pointer:coarse)]:min-h-11"
+	onclick={() => {
+		onNavigate?.();
+		window.open(resolveAppPath('/manual/'), '_blank', 'noopener');
+	}}
+>
+	<ThemeIcon role="help" class="size-4 text-muted-foreground" />{m.personal_user_manual()}
+</DropdownMenu.Item>
 {#if $canInstallApp}
 	<DropdownMenu.Item
 		class="min-h-9 gap-3 [@media(pointer:coarse)]:min-h-11"
