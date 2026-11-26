@@ -64,7 +64,7 @@ Diferenças em relação ao OpenPost:
 - Nome, logo e cores (azul) próprios.
 - Telemetria e diagnósticos desligados por padrão.
 - Imagem Docker própria, gerada pelo GitHub Actions deste repositório.
-- Material de divulgação do projeto original removido.
+- Automações (GitHub Actions) do projeto original substituídas por uma só, que gera a imagem Docker.
 
 ## Feito com a ajuda do Claude Code
 
