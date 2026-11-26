@@ -41,7 +41,7 @@ function calmScheme(appearance: ThemeScheme) {
         border,
         input: fieldBorder,
         fieldBorder,
-        focus: dark ? brand.waveDark : brand.waveLight,
+        focus: dark ? brand.light : brand.waveLight,
         caret: dark ? brand.waveDark : brand.waveLight,
         link: dark ? brand.waveDark : "#2f62c4",
         selection,
